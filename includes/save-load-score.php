@@ -7,9 +7,9 @@ $score = $_GET['score'];
 $seconds = $_GET['seconds'];
 
 //DB Connect Code
-$dbName = 'matchgame';
-$conn = mysqli_connect('localhost', 'root', 'mysql');
-mysqli_select_db($conn, $dbName);
+include('db-config.php');
+$conn = mysqli_connect('localhost', $db_user, $db_pass);
+mysqli_select_db($conn, $db_name);
 
 //Query the DB
 $query = "INSERT INTO scores(mbrID, attempts, matches, average, score, seconds) VALUES(1, '$attempts', '$matches', '$average', '$score', '$seconds')";
@@ -38,6 +38,7 @@ if(mysqli_affected_rows($conn)==1){
     $responseText = 'Couldn\'t save score';
 }
 
+myJSON = json_encode
 echo $responseText;
 echo $tbl;
 ?>
